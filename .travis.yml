@@ -13,5 +13,5 @@ script:
 after_success:
   - codecov
 before_install:
+  - pip install pytest-cov
   - pip install codecov
-  - pip install coverage
