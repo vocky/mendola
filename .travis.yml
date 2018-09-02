@@ -9,4 +9,9 @@ matrix:
 # command to run tests
 script:
   - python setup.py develop
-  - pytest
+  - pytest tests/ --cov-config .coveragerc --cov=mendola tests/
+after_success:
+  - codecov
+before_install:
+  - pip install codecov
+  - pip install coverage
