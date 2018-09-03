@@ -27,3 +27,24 @@ def selection_sort(data, reverse=False):
         if _swap(reverse, data, index, min_index):
             data[index], data[min_index] = data[min_index], data[index]
     return data
+
+
+def insertion_sort(data, reverse=False):
+    """
+    Implement insertion sort.
+    :param data: list data
+    :param reverse: if reverse is True, DESC, else ASC.
+    :return: list data
+    """
+    iter(data)
+    if len(data) < 2:
+        return data
+
+    for i in range(1, len(data)):
+        for j in range(i):
+            great_or_less = data[i] > data[j] if reverse else data[i] < data[j]
+            if great_or_less:
+                temp = data[i]
+                data[j + 1:i + 1] = data[j:i]
+                data[j] = temp
+    return data
