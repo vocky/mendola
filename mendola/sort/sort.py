@@ -48,3 +48,31 @@ def insertion_sort(data, reverse=False):
                 data[j + 1:i + 1] = data[j:i]
                 data[j] = temp
     return data
+
+
+def quick_sort(data, reverse=False):
+    """
+    Implement quick sort.
+    :param data: []
+    :param reverse: if reverse is True, DESC, else ASC.
+    :return: []
+    """
+    iter(data)
+    if len(data) < 2:
+        return data
+    equal = []
+    left = []
+    right = []
+    center_index = len(data) // 2
+    center_value = data[center_index]
+    for item in data:
+        great_or_less = item > center_value if reverse else item < center_value
+        if item == center_value:
+            equal.append(item)
+        elif great_or_less:
+            left.append(item)
+        else:
+            right.append(item)
+    left_ = quick_sort(left, reverse)
+    right_ = quick_sort(right, reverse)
+    return left_ + equal + right_
