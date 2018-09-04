@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
+import copy
 
 
 def selection_sort(data, reverse=False):
@@ -10,23 +11,24 @@ def selection_sort(data, reverse=False):
     :return: list data
     """
     iter(data)
-    if len(data) < 2:
-        return data
+    copy_data = copy.deepcopy(data)
+    if len(copy_data) < 2:
+        return copy_data
 
     def _swap(reverse_, data_, index_, min_index_):
         return data_[index_] < data_[min_index_] \
             if reverse_ else data_[index_] > data_[min_index_]
 
-    for index in range(len(data) - 1):
+    for index in range(len(copy_data) - 1):
         min_index = index
-        for last_index in range(index + 1, len(data)):
+        for last_index in range(index + 1, len(copy_data)):
             if reverse:
-                min_index = last_index if data[min_index] < data[last_index] else min_index
+                min_index = last_index if copy_data[min_index] < copy_data[last_index] else min_index
             else:
-                min_index = last_index if data[min_index] > data[last_index] else min_index
-        if _swap(reverse, data, index, min_index):
-            data[index], data[min_index] = data[min_index], data[index]
-    return data
+                min_index = last_index if copy_data[min_index] > copy_data[last_index] else min_index
+        if _swap(reverse, copy_data, index, min_index):
+            copy_data[index], copy_data[min_index] = copy_data[min_index], copy_data[index]
+    return copy_data
 
 
 def insertion_sort(data, reverse=False):
@@ -37,17 +39,18 @@ def insertion_sort(data, reverse=False):
     :return: list data
     """
     iter(data)
-    if len(data) < 2:
-        return data
+    copy_data = copy.deepcopy(data)
+    if len(copy_data) < 2:
+        return copy_data
 
-    for i in range(1, len(data)):
+    for i in range(1, len(copy_data)):
         for j in range(i):
-            great_or_less = data[i] > data[j] if reverse else data[i] < data[j]
+            great_or_less = copy_data[i] > copy_data[j] if reverse else copy_data[i] < data[j]
             if great_or_less:
-                temp = data[i]
-                data[j + 1:i + 1] = data[j:i]
-                data[j] = temp
-    return data
+                temp = copy_data[i]
+                copy_data[j + 1:i + 1] = copy_data[j:i]
+                copy_data[j] = temp
+    return copy_data
 
 
 def quick_sort(data, reverse=False):
@@ -58,14 +61,15 @@ def quick_sort(data, reverse=False):
     :return: []
     """
     iter(data)
-    if len(data) < 2:
-        return data
+    copy_data = copy.deepcopy(data)
+    if len(copy_data) < 2:
+        return copy_data
     equal = []
     left = []
     right = []
-    center_index = len(data) // 2
-    center_value = data[center_index]
-    for item in data:
+    center_index = len(copy_data) // 2
+    center_value = copy_data[center_index]
+    for item in copy_data:
         great_or_less = item > center_value if reverse else item < center_value
         if item == center_value:
             equal.append(item)
