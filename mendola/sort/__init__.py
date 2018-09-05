@@ -4,3 +4,4 @@ from __future__ import print_function
 from .sort import selection_sort
 from .sort import insertion_sort
 from .sort import quick_sort
+from .sort import merge_sort

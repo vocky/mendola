@@ -80,3 +80,43 @@ def quick_sort(data, reverse=False):
     left_ = quick_sort(left, reverse)
     right_ = quick_sort(right, reverse)
     return left_ + equal + right_
+
+
+def merge_sort(data, reverse=False):
+    """
+    Implement merge sort.
+    :param data: []
+    :param reverse: if reverse is True, DESC, else ASC.
+    :return: []
+    """
+    iter(data)
+    if len(data) < 2:
+        return data
+
+    def _merge(_left, _right, _reverse):
+        s = 0
+        r = 0
+        result = []
+        while s < len(_left) and r < len(_right):
+            great_or_less = _left[s] > _right[r] if _reverse else _left[s] < _right[r]
+            if great_or_less:
+                result.append(_left[s])
+                s += 1
+            else:
+                result.append(_right[r])
+                r += 1
+        # Copy remaining elements
+        while s < len(_left):
+            result.append(_left[s])
+            s += 1
+        while r < len(_right):
+            result.append(_right[r])
+            r += 1
+        return result
+
+    mid = len(data) // 2
+    left = data[:mid]
+    right = data[mid:]
+    left = merge_sort(left, reverse)
+    right = merge_sort(right, reverse)
+    return _merge(left, right, reverse)
