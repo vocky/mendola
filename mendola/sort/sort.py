@@ -90,8 +90,9 @@ def merge_sort(data, reverse=False):
     :return: []
     """
     iter(data)
-    if len(data) < 2:
-        return data
+    copy_data = copy.deepcopy(data)
+    if len(copy_data) < 2:
+        return copy_data
 
     def _merge(_left, _right, _reverse):
         s = 0
@@ -114,9 +115,9 @@ def merge_sort(data, reverse=False):
             r += 1
         return result
 
-    mid = len(data) // 2
-    left = data[:mid]
-    right = data[mid:]
+    mid = len(copy_data) // 2
+    left = copy_data[:mid]
+    right = copy_data[mid:]
     left = merge_sort(left, reverse)
     right = merge_sort(right, reverse)
     return _merge(left, right, reverse)
