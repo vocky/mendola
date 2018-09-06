@@ -16,5 +16,7 @@ setup(
       url='https://github.com/vocky',
       include_package_data=True,
       zip_safe=False,
-      packages=find_packages()
+      packages=find_packages(),
+      install_requires=['bitstring'
+                        ],
      )

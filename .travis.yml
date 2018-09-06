@@ -8,10 +8,11 @@ matrix:
         - python: 3.6
 # command to run tests
 script:
-  - python setup.py develop
-  - pytest tests/ --cov-config .coveragerc --cov=mendola tests/
+    - python setup.py develop
+    - pytest tests/ --cov-config .coveragerc --cov=mendola tests/
 after_success:
-  - codecov
+    - codecov
 before_install:
-  - pip install pytest-cov
-  - pip install codecov
+    - pip install pytest-cov
+    - pip install codecov
+    - pip install bitstring
