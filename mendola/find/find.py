@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
 from bitstring import BitArray
-import array
 
 
 def find_not_in_array(array_data, max_size):

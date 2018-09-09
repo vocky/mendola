@@ -16,3 +16,5 @@ before_install:
     - pip install pytest-cov
     - pip install codecov
     - pip install bitstring
+    - pip install enum34
+
