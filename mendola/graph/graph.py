@@ -24,7 +24,7 @@ class Node:
         return self.key < other.key
 
     def add_neighbor(self, neighbor, weight=0):
-        if neighbor is None or not isinstance(weight, (int, long, float)):
+        if neighbor is None or not isinstance(weight, (int, float)):
             raise TypeError('neighbor or weight must be numerical')
         neighbor.incoming_edges += 1
         self.adj_weights[neighbor.key] = weight
@@ -54,7 +54,7 @@ class Graph:
     def add_edge(self, src_key, dst_key, weight=0):
         if src_key is None or dst_key is None:
             raise TypeError('key cannot be None')
-        if not isinstance(weight, (int, long, float)):
+        if not isinstance(weight, (int, float)):
             raise KeyError('weight must be numerical')
         if src_key not in self.nodes:
             self._add_node(src_key)
@@ -65,7 +65,7 @@ class Graph:
     def add_undirected_edge(self, src_key, dst_key, weight=0):
         if src_key is None or dst_key is None:
             raise TypeError('key cannot be None')
-        if not isinstance(weight, (int, long, float)):
+        if not isinstance(weight, (int, float)):
             raise KeyError('weight must be numerical')
         self.add_edge(src_key, dst_key, weight)
         self.add_edge(dst_key, src_key, weight)
