@@ -51,5 +51,34 @@ def test_graph():
     assert_equal(net.nodes[0] < net.nodes[1], True)
 
 
+def test_shortest_path():
+    net = graph.Graph()
+    net.add_edge('a', 'b', weight=5)
+    net.add_edge('a', 'c', weight=3)
+    net.add_edge('a', 'e', weight=2)
+    net.add_edge('b', 'd', weight=2)
+    net.add_edge('c', 'b', weight=1)
+    net.add_edge('c', 'd', weight=1)
+    net.add_edge('d', 'a', weight=1)
+    net.add_edge('d', 'g', weight=2)
+    net.add_edge('d', 'h', weight=1)
+    net.add_edge('e', 'a', weight=1)
+    net.add_edge('e', 'h', weight=4)
+    net.add_edge('e', 'i', weight=7)
+    net.add_edge('f', 'b', weight=3)
+    net.add_edge('f', 'g', weight=1)
+    net.add_edge('g', 'c', weight=3)
+    net.add_edge('g', 'i', weight=2)
+    net.add_edge('h', 'c', weight=2)
+    net.add_edge('h', 'f', weight=2)
+    net.add_edge('h', 'g', weight=2)
+    shortest_path = graph.ShortestPath(net)
+    result = shortest_path.find_shortest_path('a', 'i')
+    assert_equal(result, ['a', 'c', 'd', 'g', 'i'])
+    assert_equal(shortest_path.path_weight['i'], 8)
+    assert_raises(TypeError, shortest_path.find_shortest_path, None, None)
+    assert_raises(ValueError, shortest_path.find_shortest_path, 'j', 'i')
+
+
 if __name__ == '__main__':
     pytest.main([__file__])
